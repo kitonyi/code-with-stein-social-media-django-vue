@@ -1,5 +1,12 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from "vue-router";
+import Toast from "./components/Toast.vue";
+
+export default {
+  components: {
+    Toast,
+  },
+};
 </script>
 
 <template>
@@ -30,6 +37,7 @@ import { RouterLink, RouterView } from "vue-router";
   <main class="px-8 py-6 bg-gray-100">
     <RouterView />
   </main>
+  <Toast />
 </template>
 
 <style scoped></style>

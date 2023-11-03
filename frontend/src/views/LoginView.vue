@@ -42,6 +42,11 @@ import { RouterLink } from "vue-router";
               class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg"
             />
           </div>
+          <div>
+            <button class="py-4 px-6 bg-purple-600 text-white rounded-lg">
+              Sign up
+            </button>
+          </div>
         </form>
       </div>
     </div>
