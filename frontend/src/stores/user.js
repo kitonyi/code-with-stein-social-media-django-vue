@@ -17,10 +17,10 @@ export const useUserStore = defineStore({
 
   actions: {
     initStore() {
-      console.log("initStore", localStorage.getItem("user.access"));
+      //console.log("initStore", localStorage.getItem("user.access"));
 
       if (localStorage.getItem("user.access")) {
-        console.log("User has access");
+        //console.log("User has access");
 
         this.user.access = localStorage.getItem("user.access");
         this.user.refresh = localStorage.getItem("user.refresh");
@@ -32,12 +32,12 @@ export const useUserStore = defineStore({
 
         this.refreshToken();
 
-        console.log("Initialized user:", this.user);
+        //console.log("Initialized user:", this.user);
       }
     },
 
     setToken(data) {
-      console.log("setToken", data);
+      //console.log("setToken", data);
 
       this.user.access = data.access;
       this.user.refresh = data.refresh;
@@ -46,7 +46,7 @@ export const useUserStore = defineStore({
       localStorage.setItem("user.access", data.access);
       localStorage.setItem("user.refresh", data.refresh);
 
-      console.log("user.access", localStorage.getItem("user.access"));
+      // console.log("user.access", localStorage.getItem("user.access"));
     },
 
     removeToken() {
@@ -69,7 +69,7 @@ export const useUserStore = defineStore({
     },
 
     setUserInfo(user) {
-      console.log("setUserInfo", user);
+      //console.log("setUserInfo", user);
 
       this.user.id = user.id;
       this.user.name = user.name;
@@ -81,7 +81,7 @@ export const useUserStore = defineStore({
       localStorage.setItem("user.email", this.user.email);
       localStorage.setItem("user.avatar", this.user.avatar);
 
-      console.log("User", this.user);
+      //console.log("User", this.user);
     },
 
     refreshToken() {
