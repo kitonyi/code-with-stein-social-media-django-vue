@@ -1,10 +1,19 @@
 <script>
 import PeopleYouMayKnow from "../components/PeopleYouMayKnow.vue";
 import Trending from "../components/Trending.vue";
+import { useUserStore } from "@/stores/user";
 import axios from "axios";
 
 export default {
-  name: "FeedView",
+  setup() {
+    const userStore = useUserStore();
+
+    return {
+      userStore,
+    };
+  },
+
+  name: "ProfileView",
   components: {
     PeopleYouMayKnow,
     Trending,
@@ -23,7 +32,7 @@ export default {
   methods: {
     getFeed() {
       axios
-        .get("/api/posts")
+        .get(`/api/posts/profile/${this.$route.params.id}`)
         .then((response) => {
           //console.log("data", response.data);
           this.posts = response.data;
@@ -54,7 +63,19 @@ export default {
 </script>
 <template>
   <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
-    <div class="main-center col-span-3 space-y-4">
+    <div class="main-left col-span-1">
+      <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
+        <img src="placeholder.jpg" alt="Profile Image" class="rounded-full" />
+        <p class="mt-4">
+          <strong>{{ userStore.user.name }}</strong>
+        </p>
+        <div class="mt-6 flex space-x-8 justify-around">
+          <p class="text-xs text-gray-500">182 friends</p>
+          <p class="text-xs text-gray-500">120 posts</p>
+        </div>
+      </div>
+    </div>
+    <div class="main-center col-span-2 space-y-4">
       <div class="p-4 bg-white border border-gray-200 rounded-lg">
         <form method="post" v-on:submit.prevent="submitForm">
           <div class="p-4">
@@ -83,12 +104,16 @@ export default {
       <div class="p-4 bg-white border border-gray-200 rounded-lg">
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
-            <img src="person-40x40.png" alt="" class="w-[40px] rounded-full" />
+            <img
+              src="person-40x40.png"
+              alt="profile image"
+              class="w-[40px] rounded-full"
+            />
             <p><strong>Code with Stein</strong></p>
           </div>
           <p class="text-gray-600">18 minutes ago</p>
         </div>
-        <img src="placeholder-image.jpg" alt="" />
+        <img src="placeholder-image.jpg" alt="Post Image" />
         <div class="my-6 flex justify-between">
           <div class="flex space-x-6">
             <div class="flex items-center space-x-2">
@@ -110,7 +135,11 @@ export default {
       >
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
-            <img src="person-40x40.png" alt="" class="w-[40px] rounded-full" />
+            <img
+              src="person-40x40.png"
+              alt="profile image"
+              class="w-[40px] rounded-full"
+            />
             <p>
               <strong>{{ post.created_by.name }}</strong>
             </p>
