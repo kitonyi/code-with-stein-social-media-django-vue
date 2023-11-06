@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       posts: [],
+      body: "",
     };
   },
 
@@ -29,6 +30,22 @@ export default {
         })
         .catch((error) => {
           console.log("error", error);
+        });
+    },
+
+    submitForm() {
+      //console.log("submitForm", this.body);
+
+      axios
+        .post("/api/posts/create/", { body: this.body })
+        .then((response) => {
+          //console.log("data", response.data);
+
+          //Push ands to the end of the list n unshift adds to the beginning
+          this.posts.unshift(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
   },
@@ -48,24 +65,28 @@ export default {
     </div>
     <div class="main-center col-span-2 space-y-4">
       <div class="p-4 bg-white border border-gray-200 rounded-lg">
-        <div class="p-4">
-          <textarea
-            class="p-4 w-full bg-gray-100 rounded-lg"
-            placeholder="What's on your mind today?"
-          ></textarea>
-        </div>
-        <div class="p-4 border-t border-gray-100 flex justify-between">
-          <a
-            href="#"
-            class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg"
-            >Attach</a
-          >
-          <a
-            href="#"
-            class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg"
-            >Post</a
-          >
-        </div>
+        <form method="post" v-on:submit.prevent="submitForm">
+          <div class="p-4">
+            <textarea
+              class="p-4 w-full bg-gray-100 rounded-lg"
+              placeholder="What's on your mind today?"
+              v-model="body"
+            ></textarea>
+          </div>
+          <div class="p-4 border-t border-gray-100 flex justify-between">
+            <a
+              href="#"
+              class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg"
+              >Attach</a
+            >
+            <button
+              type="submit"
+              class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg"
+            >
+              Post
+            </button>
+          </div>
+        </form>
       </div>
 
       <div class="p-4 bg-white border border-gray-200 rounded-lg">
@@ -103,7 +124,7 @@ export default {
               <strong>{{ post.created_by.name }}</strong>
             </p>
           </div>
-          <p class="text-gray-600">{{ post.created_at }}</p>
+          <p class="text-gray-600">{{ post.time_since_created }} ago</p>
         </div>
         <p>
           {{ post.body }}

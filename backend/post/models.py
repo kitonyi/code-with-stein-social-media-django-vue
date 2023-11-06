@@ -1,5 +1,6 @@
 import uuid 
 from django.db import models
+from django.utils.timesince import timesince
 
 from account.models import User
 
@@ -20,3 +21,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+
+    def time_since_created(self):
+        return timesince(self.created_at)
