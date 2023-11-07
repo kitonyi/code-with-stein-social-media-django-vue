@@ -115,7 +115,7 @@ export default {
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
             <img
-              :src="require('@/assets/images/person-40x40.png')"
+              src="/images/person-40x40.png"
               alt=""
               class="w-[40px] rounded-full"
             />
