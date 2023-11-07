@@ -23,19 +23,24 @@ export default {
     return {
       posts: [],
       body: "",
+      user: {},
     };
   },
 
   mounted() {
     this.getFeed();
   },
+  // updated() {
+  //   console.log("Updated");
+  // },
   methods: {
     getFeed() {
       axios
         .get(`/api/posts/profile/${this.$route.params.id}`)
         .then((response) => {
-          //console.log("data", response.data);
-          this.posts = response.data;
+          //console.log("data", response.data.posts);
+          this.posts = response.data.posts;
+          this.user = response.data.user;
         })
         .catch((error) => {
           console.log("error", error);
@@ -65,9 +70,13 @@ export default {
   <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
     <div class="main-left col-span-1">
       <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
-        <img src="placeholder.jpg" alt="Profile Image" class="rounded-full" />
+        <img
+          src="/images/placeholder.jpg"
+          alt="Profile Image"
+          class="rounded-full"
+        />
         <p class="mt-4">
-          <strong>{{ userStore.user.name }}</strong>
+          <strong>{{ user.name }}</strong>
         </p>
         <div class="mt-6 flex space-x-8 justify-around">
           <p class="text-xs text-gray-500">182 friends</p>
@@ -76,7 +85,10 @@ export default {
       </div>
     </div>
     <div class="main-center col-span-2 space-y-4">
-      <div class="p-4 bg-white border border-gray-200 rounded-lg">
+      <div
+        class="p-4 bg-white border border-gray-200 rounded-lg"
+        v-if="userStore.user.id === user.id"
+      >
         <form method="post" v-on:submit.prevent="submitForm">
           <div class="p-4">
             <textarea
@@ -105,7 +117,7 @@ export default {
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
             <img
-              src="person-40x40.png"
+              src="/images/person-40x40.png"
               alt="profile image"
               class="w-[40px] rounded-full"
             />
@@ -113,7 +125,7 @@ export default {
           </div>
           <p class="text-gray-600">18 minutes ago</p>
         </div>
-        <img src="placeholder-image.jpg" alt="Post Image" />
+        <img src="/images/placeholder-image.jpg" alt="Post Image" />
         <div class="my-6 flex justify-between">
           <div class="flex space-x-6">
             <div class="flex items-center space-x-2">
@@ -136,7 +148,7 @@ export default {
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
             <img
-              src="person-40x40.png"
+              src="/images/person-40x40.png"
               alt="profile image"
               class="w-[40px] rounded-full"
             />

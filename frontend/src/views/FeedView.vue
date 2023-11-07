@@ -83,12 +83,16 @@ export default {
       <div class="p-4 bg-white border border-gray-200 rounded-lg">
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
-            <img src="person-40x40.png" alt="" class="w-[40px] rounded-full" />
+            <img
+              src="/images/person-40x40.png"
+              alt=""
+              class="w-[40px] rounded-full"
+            />
             <p><strong>Code with Stein</strong></p>
           </div>
           <p class="text-gray-600">18 minutes ago</p>
         </div>
-        <img src="placeholder-image.jpg" alt="" />
+        <img src="/images/placeholder-image.jpg" alt="" />
         <div class="my-6 flex justify-between">
           <div class="flex space-x-6">
             <div class="flex items-center space-x-2">
@@ -110,7 +114,11 @@ export default {
       >
         <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
-            <img src="person-40x40.png" alt="" class="w-[40px] rounded-full" />
+            <img
+              :src="require('@/assets/images/person-40x40.png')"
+              alt=""
+              class="w-[40px] rounded-full"
+            />
             <p>
               <strong>{{ post.created_by.name }}</strong>
             </p>
