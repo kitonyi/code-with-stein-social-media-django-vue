@@ -33,15 +33,16 @@ export default {
     this.getFeed();
   },
 
-  //Get feed when you switch from user profile to another
-  beforeRouteUpdate(to, from, next) {
-    if (from.name === to.name) {
-      this.getFeed();
-    }
+  //Get feed when you switch between two profiles
+  watch: {
+    "$route.params.id": {
+      handler: function () {
+        this.getFeed();
+      },
+      deep: true,
+      immediate: true,
+    },
   },
-  // updated() {
-  //   console.log("Updated");
-  // },
   methods: {
     getFeed() {
       axios
