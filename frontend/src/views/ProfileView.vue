@@ -32,6 +32,13 @@ export default {
   mounted() {
     this.getFeed();
   },
+
+  //Get feed when you switch from user profile to another
+  beforeRouteUpdate(to, from, next) {
+    if (from.name === to.name) {
+      this.getFeed();
+    }
+  },
   // updated() {
   //   console.log("Updated");
   // },
