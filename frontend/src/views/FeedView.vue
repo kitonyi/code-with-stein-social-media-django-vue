@@ -1,6 +1,7 @@
 <script>
 import PeopleYouMayKnow from "../components/PeopleYouMayKnow.vue";
 import Trending from "../components/Trending.vue";
+import FeedItem from "../components/FeedItem.vue";
 import axios from "axios";
 
 export default {
@@ -112,7 +113,8 @@ export default {
         v-for="post in posts"
         v-bind:key="post.id"
       >
-        <div class="mb-6 flex items-center justify-between">
+        <FeedItem v-bind:post="post" />
+        <!-- <div class="mb-6 flex items-center justify-between">
           <div class="flex items-center space-x-6">
             <img
               src="/images/person-40x40.png"
@@ -141,7 +143,7 @@ export default {
             </div>
           </div>
           <div><v-icon name="bi-three-dots-vertical" /></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- Right Column -->
