@@ -7,8 +7,6 @@ import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
 
-import FeedItem from "./components/FeedItem.vue";
-
 // Vue Icons
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 
@@ -56,6 +54,5 @@ app.use(router, axios);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("v-icon", OhVueIcon);
-app.component("FeedItem", FeedItem);
 
 app.mount("#app");

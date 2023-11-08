@@ -10,6 +10,7 @@ export default {
   components: {
     PeopleYouMayKnow,
     Trending,
+    FeedItem,
   },
 
   data() {
