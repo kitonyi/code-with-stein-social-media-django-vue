@@ -44,6 +44,17 @@ export default {
     },
   },
   methods: {
+    sendFriendRequest() {
+      axios
+        .post(`/api/account/friends/request/${this.$route.params.id}`)
+        .then((response) => {
+          console.log("data", response.data);
+          //this.user = response.data.user;
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    },
     getFeed() {
       axios
         .get(`/api/posts/profile/${this.$route.params.id}`)
@@ -91,6 +102,14 @@ export default {
         <div class="mt-6 flex space-x-8 justify-around">
           <p class="text-xs text-gray-500">182 friends</p>
           <p class="text-xs text-gray-500">120 posts</p>
+        </div>
+        <div class="mt-6">
+          <button
+            class="inline-block py-4 px-6 text-xs bg-purple-600 text-white rounded-lg"
+            @click="sendFriendRequest"
+          >
+            Send friend request
+          </button>
         </div>
       </div>
     </div>
